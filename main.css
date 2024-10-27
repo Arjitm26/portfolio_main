@@ -22,7 +22,7 @@ hr {
     margin-bottom: 5%;
 }
 
-#MainMenu {visibility: visible;}
+#MainMenu {visibility: hidden;}
 footer {visibility: hidden;}
 header {visibility: hidden;}
 
@@ -47,6 +47,7 @@ button[type=submit] {
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  align-self: center;
 }
 
 /* When moving the mouse over the submit button, add a darker green color */
