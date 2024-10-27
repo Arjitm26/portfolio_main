@@ -7,11 +7,11 @@ from PIL import Image
 current_dir = Path(__file__).parent if "__file__" in locals() else Path.cwd()
 css_file = current_dir / "main.css"
 resume_file = current_dir / "CV.pdf"
-profile_pic = current_dir / "Profile (2).png"
+profile_pic = current_dir / "Profile.png"
 
 # --- GENERAL SETTINGS ---
 PAGE_TITLE = "Arjit Mishra"
-PAGE_ICON = ":wave:"
+PAGE_ICON = "🤝"
 LAYOUT = "wide"
 NAME = "Arjit Mishra"
 DESCRIPTION = """I'm a data-driven professional with 6 months of experience as a app developer intern. 
@@ -22,7 +22,7 @@ keen interest in exploring the world of machine learning, data mining, and stati
 """
 EMAIL = "arjitmishra72@gmail.com"
 SOCIAL_MEDIA = {
-    "💬 LinkedIn": "https://www.linkedin.com/in/arjit-mishra-learner/"
+    "👀 LinkedIn": "https://www.linkedin.com/in/arjit-mishra-learner/"
 }
 
 st.set_page_config(page_title=PAGE_TITLE, page_icon=PAGE_ICON, layout=LAYOUT)
@@ -37,7 +37,7 @@ profile_pic = Image.open(profile_pic)
 # --- HERO SECTION ---
 col1, col2 = st.columns(2, gap="small")
 with col1:
-    st.image(profile_pic, width=300)
+    st.image(profile_pic, width=350)
 
 with col2:
     st.title(NAME)
@@ -51,14 +51,14 @@ with col2:
     st.write("📍 MP,India 📞 +91 7441183675")
     for index, (platform, link) in enumerate(SOCIAL_MEDIA.items()):
         st.write(f"[{platform}]({link})")
-    st.write("📧", EMAIL)
+    st.write("💌", EMAIL)
 
 # --- SKILLS ---
 st.write('\n')
 st.subheader("Technical Skills")
 info = {'skills':
-            ['Python', 'Data Science', 'SQL', 'Snowflake',
-             'Plotly', 'Tableau', 'PowerBI', 'MS Excel', 'Amazon SageMaker']
+            ['Python', 'Data Science', 'SQL',
+             'Plotly', 'PowerBI', 'MS Excel', 'Amazon SageMaker','GenAI']
         }
 skill_col_size = 6
 
@@ -134,7 +134,7 @@ st.markdown("[🎯 AWS Academy Graduate - AWS Academy Machine Learning Foundatio
 st.write('\n')
 st.subheader("Positions of Responsibility")
 st.write("---")
-st.markdown("🤝 CSR - Social Contributor")
+st.markdown("🤝 CSR - Team Contributor")
 st.markdown('Successfully led a team of 20+ volunteers to organise Coding competition 160 students '
             'eagle coding club')
 st.markdown("🤝 National Cadet Corps - A")
@@ -148,7 +148,7 @@ with st.container():
     col1, col2, col3 = st.columns(3)
     with col2:
         contact_form = """
-        <form action="https://formsubmit.co/el/goniho" method="POST">
+        <form action="https://formsubmit.co/arjitmishra72@email.com" method="POST">
             <input type="hidden" name="_captcha" value="true">
             <input type="text" name="name" placeholder="Your name" required>
             <input type="email" name="email" placeholder="Your email" required>
