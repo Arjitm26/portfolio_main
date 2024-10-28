@@ -22,7 +22,7 @@ keen interest in exploring the world of machine learning, data mining, and stati
 """
 EMAIL = "arjitmishra72@gmail.com"
 SOCIAL_MEDIA = {
-    "👀 LinkedIn": "https://www.linkedin.com/in/arjit-mishra-learner/"
+    "👋 LinkedIn": "https://www.linkedin.com/in/arjit-mishra-learner/"
 }
 
 st.set_page_config(page_title=PAGE_TITLE, page_icon=PAGE_ICON, layout=LAYOUT)
@@ -51,7 +51,7 @@ with col2:
     st.write("📍 MP,India 📞 +91 7441183675")
     for index, (platform, link) in enumerate(SOCIAL_MEDIA.items()):
         st.write(f"[{platform}]({link})")
-    st.write("💌", EMAIL)
+    st.write("✉️", EMAIL)
 
 # --- SKILLS ---
 st.write('\n')
