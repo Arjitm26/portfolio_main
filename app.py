@@ -148,7 +148,7 @@ with st.container():
     col1, col2, col3 = st.columns(3)
     with col2:
         contact_form = """
-        <form action="https://formsubmit.co/arjitmishra72@email.com" method="POST">
+        <form action="https://formsubmit.co/arjitmishra72@gmail.com" method="POST">
             <input type="hidden" name="_captcha" value="true">
             <input type="text" name="name" placeholder="Your name" required>
             <input type="email" name="email" placeholder="Your email" required>
