@@ -1,12 +1,34 @@
 from pathlib import Path
-
 import streamlit as st
 from PIL import Image
+from dotenv import load_dotenv
+import streamlit as st 
+from streamlit_extras import add_vertical_space as avs 
+import google.generativeai as genai
+import os 
+from PIL import Image
+import json
+from streamlit.components.v1 import html
+
+
+load_dotenv()
+
+api_key = os.getenv("GOOGLE_API_KEY")
+
+
+if api_key:
+    genai.configure(api_key=api_key)
+else:
+    raise ValueError("API key not found. Ensure GOOGLE_API_KEY is set in your .env file.")
+
+model = genai.GenerativeModel('gemini-pro')
+
+
 
 # --- PATH SETTINGS ---
 current_dir = Path(__file__).parent if "__file__" in locals() else Path.cwd()
 css_file = current_dir / "main.css"
-resume_file = current_dir / "CV2.pdf"
+resume_file = current_dir / "Arjit mishra resume.pdf"
 profile_pic = current_dir / "Profile.png"
 
 # --- GENERAL SETTINGS ---
@@ -52,6 +74,66 @@ with col2:
     for index, (platform, link) in enumerate(SOCIAL_MEDIA.items()):
         st.write(f"[{platform}]({link})")
     st.write("✉️", EMAIL)
+
+# ---Bot ---
+# Inject custom HTML/CSS/JavaScript for the floating button and popup
+
+st.html(
+"""
+<style>
+.stPopover {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+}
+
+</style>
+"""
+)
+
+
+load_dotenv()
+
+api_key = os.getenv("GOOGLE_API_KEY")
+
+
+if api_key:
+    genai.configure(api_key=api_key)
+else:
+    raise ValueError("API key not found. Ensure GOOGLE_API_KEY is set in your .env file.")
+
+model = genai.GenerativeModel('gemini-pro')
+
+with open('cv.json','r') as file:
+    resume = json.load(file) 
+
+def bot_response(user_query):
+    context = f"""
+    You are a chatbot designed to answer questions about my resume. Here are the details:
+    {json.dumps(resume, indent=2)}
+    """
+    prompt = f"{context}\n\nUser: {user_query}\nChatbot:"
+    response = model.generate_content([prompt])
+    return response.text
+
+st.html(
+"""
+<style>
+.stPopover {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+}
+
+</style>
+"""
+)
+
+
+with st.popover("Ask anything about me !"):
+  prompt = st.chat_input("Say something")
+  if prompt:
+    st.write(bot_response(prompt))
 
 # --- SKILLS ---
 st.write('\n')
