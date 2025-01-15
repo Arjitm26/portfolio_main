@@ -3,26 +3,11 @@ import streamlit as st
 from PIL import Image
 from dotenv import load_dotenv
 import streamlit as st 
-from streamlit_extras import add_vertical_space as avs 
-import google.generativeai as genai
+from langchain_groq import ChatGroq
 import os 
 from PIL import Image
 import json
 from streamlit.components.v1 import html
-
-
-load_dotenv()
-
-api_key = os.getenv("GOOGLE_API_KEY")
-
-
-if api_key:
-    genai.configure(api_key=api_key)
-else:
-    raise ValueError("API key not found. Ensure GOOGLE_API_KEY is set in your .env file.")
-
-model = genai.GenerativeModel('gemini-pro')
-
 
 
 # --- PATH SETTINGS ---
@@ -36,15 +21,15 @@ PAGE_TITLE = "Arjit Mishra"
 PAGE_ICON = "🤝"
 LAYOUT = "wide"
 NAME = "Arjit Mishra"
-DESCRIPTION = """I'm a data-driven professional with 6 months of experience as a app developer intern. 
-I'm passionate about leveraging data to solve complex problems and drive actionable insights. 
-My background in Artificial Intelligence and Machine learning has equipped me with a strong foundation in 
-problem-solving, critical thinking, data analysis. I'm proficient in programming languages : Python, R and have a 
-keen interest in exploring the world of machine learning, data mining, and statistical modeling.
+DESCRIPTION = """Aspiring Data Scientist with a B.Tech in AI/ML, skilled in Python, SQL, and machine learning.
+Former AI Intern at Koncpt AI where I built healthcare recommendation systems using RAG with 87% accuracy.
+Completed Gen AI internship at Google Cloud, developing an ATS Resume Analyzer with Gemini Pro 1.5. Proficient in frameworks
+like TensorFlow, Langchain, Flutter and multimodal AI applications. Passionate about solving 
+complex business challenges through AI-powered solutions, validated by certifications from DataCamp, Google, and AWS.
 """
-EMAIL = "arjitmishra72@gmail.com"
+EMAIL = "arjitmishra79@gmail.com"
 SOCIAL_MEDIA = {
-    "👋 LinkedIn": "https://www.linkedin.com/in/arjit-mishra-learner/"
+    "👋 Linkedin": "https://www.linkedin.com/in/arjit-mishra-learner/"
 }
 
 st.set_page_config(page_title=PAGE_TITLE, page_icon=PAGE_ICON, layout=LAYOUT)
@@ -78,31 +63,9 @@ with col2:
 # ---Bot ---
 # Inject custom HTML/CSS/JavaScript for the floating button and popup
 
-st.html(
-"""
-<style>
-.stPopover {
-  position: fixed;
-  bottom: 10px;
-  right: 10px;
-}
-
-</style>
-"""
-)
-
-
 load_dotenv()
 
-api_key = os.getenv("GOOGLE_API_KEY")
-
-
-if api_key:
-    genai.configure(api_key=api_key)
-else:
-    raise ValueError("API key not found. Ensure GOOGLE_API_KEY is set in your .env file.")
-
-model = genai.GenerativeModel('gemini-pro')
+model = ChatGroq(model="llama3-8b-8192")
 
 with open('cv.json','r') as file:
     resume = json.load(file) 
@@ -113,34 +76,34 @@ def bot_response(user_query):
     {json.dumps(resume, indent=2)}
     """
     prompt = f"{context}\n\nUser: {user_query}\nChatbot:"
-    response = model.generate_content([prompt])
-    return response.text
+    response = model.invoke(prompt)
+    return response.content
 
-st.html(
-"""
+st.markdown("""
 <style>
 .stPopover {
-  position: fixed;
-  bottom: 10px;
-  right: 10px;
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    z-index: 1000 !important;
 }
-
+.streamlit-expanderContent {
+    z-index: 999 !important;
+}
 </style>
-"""
-)
-
+""", unsafe_allow_html=True)
 
 with st.popover("Ask anything about me !"):
-  prompt = st.chat_input("Say something")
-  if prompt:
-    st.write(bot_response(prompt))
+    prompt = st.chat_input("Say something")
+    if prompt:
+        st.write(bot_response(prompt))
 
 # --- SKILLS ---
 st.write('\n')
 st.subheader("Technical Skills")
 info = {'skills':
-            ['Python', 'Data Science', 'SQL',
-             'Plotly', 'PowerBI', 'MS Excel', 'Amazon SageMaker','GenAI']
+            ['Python', 'SQL','Pyspark','Machine learning' , 'Deep learning',
+             'Plotly', 'PowerBI', 'Langchain','GenAI','MS Excel']
         }
 skill_col_size = 6
 
@@ -168,7 +131,35 @@ st.subheader("Work Experience")
 st.write("---")
 
 # --- JOB 1
+st.write("💼", "**AI - Intern**")
+st.write("Koncpt AI")
+st.write("07/24 - 01/25")
+st.write(
+    """
+    - ► Deployed a healthcare recommendation RAG, processing patient health metrics to provide personalized health
+        insights with 87% accuracy and reduced response latency by 60% through efficient caching.
+    - ► Developed a multi modal RAG system using GCP Vertex AI platform that seamlessly integrated medical imaging
+        analysis with textual patient records.
+    - ► Engineered monitoring and feedback loop systems for continuous model improvement, including recommendation
+        quality tracking.
+"""
+)
+st.write("\n")
+# --- JOB 2
+st.write("💼", "**Gen AI - Intern**")
+st.write("Google cloud")
+st.write("10/24 - 11/24")
+st.write(
+    """
+    - ► Led the development of an ATS Resume Analyzer using Gemini Pro 1.5 model, successfully deploying it on Streamlit
+        to provide automated resume screening and analysis capabilities.
+    - ► Gained hands-on experience with Google’s generative AI models, focusing on prompt engineering and model fine tuning.
+"""
+)
+st.write("\n")
+# --- JOB 3
 st.write("💼", "**Flutter developer - Intern**")
+st.write("Phaico One")
 st.write("03/22 - 08/22")
 st.write(
     """
@@ -184,24 +175,26 @@ st.write(
 st.write('\n')
 st.subheader("Projects")
 st.write("---")
-st.markdown("✔️ YOURBOT")
-st.markdown(""" This project aims to develop a versatile AI chatbot that adapts to various roles and contexts, leveraging
-            OpenAI’s language models and Python’s Flask framework. The chatbot will process user input, generate relevant
-            responses, and simulate different personas""")
-st.markdown("[Check out here !](https://github.com/Arjitm26/YOURBOT)")
+st.markdown("✔️ Classification of Disaster Tweets")
+st.markdown(""" Classified tweets as disaster-related or non using NLP techniques. The project
+involved extensive data preprocessing, including text cleaning, tokenization, and feature extraction using techniques like
+TF-IDF and word embeddings. Implemented and compared various classification algorithms such as Logistic Regression,
+Random Forest, and XGBoost. Achieved an accuracy of 82% and optimized performance using hyperparameter tuning.""")
+st.markdown("[Check out here !](https://github.com/Arjitm26/Disaster-tweets-Classification)")
             
-
-st.markdown("✔️ Avito-demand-prediction-Model")
-st.markdown("""Developed a machine learning model to predict the probability of a deal being
-closed for Avito advertisements. This model will enable Avito to provide valuable insights to sellers, optimize resource
-allocation, and enhance user experience""")
-st.markdown("[Check out here !](https://github.com/Arjitm26/Avito-demand-prediction-Model)")
 
 st.markdown("✔️ ML-algorithm-for-stack-exchange")
 st.markdown("""Machine learning model that accurately predicts various scores (e.g., question
-quality, answer quality, user reputation) on Stack Exchange based on user intent. This model will improve the overall
-user experience on the platform by identifying high-quality content and promoting community engagement""")
+quality, answer quality, user reputation) on Stack Exchange based on user intent.Using NLP ,Word embedding, Vectorization and Model training""")
 st.markdown("[Check out here !](https://github.com/Arjitm26/ML-algorithm-for-stack-exchange)")
+
+st.markdown("✔️ Smart Search Tool")
+st.markdown("""Course discovery platform that leverages web scraping to aggregate free courses from Edtech
+Platforms. Using RAG with FAISS vector database and prompt engineering, it delivers hyper-personalized course
+recommendations based on semantic search and learner preferences. Built with Python, BeautifulSoup, LangChain, and
+vector embeddings, this tool transforms the course search experience into an AI-powered educational journey.
+""")
+st.markdown("[Check out here !](https://huggingface.co/spaces/arzzit/analytics_vidhya_smart_search)")
 
 
 # --- Certifications ---
@@ -217,8 +210,8 @@ st.write('\n')
 st.subheader("Positions of Responsibility")
 st.write("---")
 st.markdown("🤝 CSR - Team Contributor")
-st.markdown('Successfully led a team of 20+ volunteers to organise Coding competition 160 students '
-            'eagle coding club')
+st.markdown('Successfully led a team of 10+ volunteers to organise Coding competition 160 students '
+            'Eagle coding club')
 st.markdown("🤝 National Cadet Corps - A")
 
 # --- CONTACT ---
@@ -230,12 +223,14 @@ with st.container():
     col1, col2, col3 = st.columns(3)
     with col2:
         contact_form = """
-        <form action="https://formsubmit.co/arjitmishra72@gmail.com" method="POST">
+        <form action="https://formsubmit.co/arjitmishra79@gmail.com" method="POST">
             <input type="hidden" name="_captcha" value="true">
             <input type="text" name="name" placeholder="Your name" required>
             <input type="email" name="email" placeholder="Your email" required>
             <textarea name="message" placeholder="Your message" required></textarea>
-            <button type="submit">Send</button>
+            <div class="button-container">
+                <button type="submit">Send</button>
+            </div>
         </form>
         """
         st.markdown(contact_form, unsafe_allow_html=True)

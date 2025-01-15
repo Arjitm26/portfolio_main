@@ -1,44 +1,88 @@
 {
-    "name": "Arjit Mishra",
-    "contact": {
-      "email": "arjitmishra72@gmail.com",
-      "phone": "+91 7441183675",
-      "location": "Jabalpur, MP"
+  "name": "Arjit Mishra",
+  "contact": {
+    "phone": "+91 7441183675",
+    "location": "Jabalpur, MP",
+    "email": "arjitmishra79@gmail.com",
+    "linkedin": "https://www.linkedin.com/in/arjit-mishra-learner/",
+    "github": "https://www.github.com/Arjitm26/"
+  },
+  "summary": "A results-driven Data Science professional with expertise in Python, SQL, machine learning, and Gen AI. Skilled in creating prediction models and developing AI-powered solutions to solve complex business challenges.",
+  "education": [
+    {
+      "degree": "B.Tech in Artificial Intelligence Machine Learning",
+      "institution": "Gyan Ganga Institute of Technology and Sciences",
+      "years": "2020 - 2024"
     },
-    "education": [
-      {
-        "degree": "B.Tech in Artificial Intelligence and Machine Learning",
-        "institute": "Gyan Ganga Institute of Technology and Sciences",
-        "year": "2020-2024"
-      },
-      {
-        "degree": "Higher Secondary Certificate",
-        "institute": "St. Gabriel Senior Secondary School",
-        "year": "2018-2020"
-      }
-    ],
-    "skills": ["Python", "C++", "Dart", "SQL", "TensorFlow", "Scikit-learn"],
-    "experience": [
-      {
-        "role": "Flutter Developer Intern",
-        "company": "Phaico",
-        "duration": "March 2022 - August 2022",
-        "details": [
-          "Developed features like geofencing and video chat for a bus management app.",
-          "Built a WooCommerce retail app with API integration and payment gateway.",
-          "Integrated video chat in a consultation app using Agora SDK."
-        ]
-      }
-    ],
-    "projects": [
-      {
-        "name": "Classification of Disaster Tweets",
-        "details": "Used NLP techniques to classify tweets with 82% accuracy."
-      },
-      {
-        "name": "Disease Prediction",
-        "details": "Built ML models to predict diseases based on symptoms with 79% accuracy."
-      }
-    ]
-  }
-  
+    {
+      "degree": "10 + 2",
+      "institution": "St. Gabriel Senior Secondary School",
+      "years": "2018 - 2020"
+    }
+  ],
+  "skills": {
+    "languages": ["Python", "MYSQL - ETL & ELT", "Pyspark"],
+    "tools": ["MS Excel", "MS Office", "Machine Learning", "Deep Learning", "NLP"],
+    "frameworks": ["TensorFlow", "LangChain", "Pandas", "Scikit-learn", "Flutter", "Ollama", "GenAI"],
+    "analytics": ["EDA", "Predictive Modelling", "Statistical Analysis", "Embedding"],
+    "webdev": ["Flutter", "Streamlit"],
+    "visualization": ["Power BI", "Matplotlib", "Seaborn", "Plotly"]
+  },
+  "experience": [
+    {
+      "role": "AI Intern",
+      "company": "Koncpt AI",
+      "duration": "July 2024 - Jan 2025",
+      "type": "Virtual",
+      "responsibilities": [
+        "Deployed a healthcare recommendation RAG, processing patient health metrics to provide personalized health insights with 87% accuracy and reduced response latency by 60% through efficient caching.",
+        "Developed a multimodal RAG system using GCP Vertex AI platform that seamlessly integrated medical imaging analysis with textual patient records.",
+        "Engineered monitoring and feedback loop systems for continuous model improvement, including recommendation quality tracking."
+      ]
+    },
+    {
+      "role": "Gen AI - Virtual Internship",
+      "company": "Google Cloud",
+      "duration": "Oct 2024 - Nov 2024",
+      "type": "Virtual",
+      "responsibilities": [
+        "Led the development of an ATS Resume Analyzer using Gemini Pro 1.5 model, successfully deploying it on Streamlit to provide automated resume screening and analysis capabilities.",
+        "Gained hands-on experience with Google’s generative AI models, focusing on prompt engineering and model fine-tuning."
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "name": "Classification of Disaster Tweets",
+      "description": "Classified tweets as disaster-related or not using NLP techniques, including text cleaning, tokenization, and feature extraction (TF-IDF, word embeddings). Achieved 82% accuracy using algorithms like Logistic Regression, Random Forest, and XGBoost with hyperparameter tuning.",
+      "link": "https://github.com/Arjitm26/Disaster-tweets-Classification"
+    },
+    {
+      "name": "ML Algorithm for Stack Exchange",
+      "description": "Developed a machine learning model predicting scores on Stack Exchange (e.g., question quality, answer quality, user reputation) using NLP, word embeddings, vectorization, and model training.",
+      "link": "https://github.com/Arjitm26/ML-algorithm-for-stack-exchange"
+    },
+    {
+      "name": "Smart Search Tool",
+      "description": "Built a course discovery platform leveraging web scraping, RAG with FAISS, and LangChain for hyper-personalized recommendations. Utilized Python, BeautifulSoup, and vector embeddings for AI-powered education.",
+      "link": "https://huggingface.co/spaces/arzzit/analytics_vidhya_smart_search"
+    }
+  ],
+  "certifications": [
+    {
+      "name": "Associate Data Scientist",
+      "issuer": "DataCamp",
+      "link": "https://www.datacamp.com/certificate/DSA0010623634126"
+    },
+    {
+      "name": "Data Analytics Specialization",
+      "issuer": "Google",
+      "link": "https://www.coursera.org/account/accomplishments/specialization/WPXKJEJ5X8QB"
+    },
+    {
+      "name": "AWS Academy Machine Learning Foundations",
+      "issuer": "AWS",
+      "link": "https://www.credly.com/badges/52e2539a-91bc-47bd-9bd8-44ea73d56504/public_url"
+    }
+  ]
+}
